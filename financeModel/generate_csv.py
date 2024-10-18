@@ -2,19 +2,15 @@ import pandas as pd
 from faker import Faker
 import random
 
-# Initialize Faker
 fake = Faker()
 
-# Define the number of records you want to generate
 num_records = 10000
 
-# Create an empty list to hold the data
 data = []
 
 for _ in range(num_records):
     age = random.randint(18, 70)
 
-    # Age-based logic for education level
     if age < 22:
         education_level = random.choice(['high school', 'in school'])
         employment_status = random.choice(['part-time', 'unemployed'])
@@ -31,22 +27,17 @@ for _ in range(num_records):
         income = random.randint(5000, 10000)
         savings = random.randint(10000, 50000)
 
-    # Income should correlate with higher spending and savings
     monthly_spending = random.randint(int(income * 0.3), int(income * 0.7))
 
-    # Older people tend to have more debt (mortgages, loans)
     loan_balance = random.randint(0, age * 1000)
 
     credit_usage = random.randint(0, 10000)
 
-    # Debt-to-income ratio
     debt_to_income_ratio = round((loan_balance + credit_usage) / (income + 1), 2)
 
-    # Ensure valid range for monthly_essentials
     monthly_essentials_upper_bound = max(500, int(monthly_spending * 0.7))
     monthly_essentials = random.randint(500, monthly_essentials_upper_bound)
 
-    # Ensure valid range for monthly_discretionary
     monthly_discretionary_upper_bound = max(200, int(monthly_spending * 0.3))
     monthly_discretionary = random.randint(200, monthly_discretionary_upper_bound)
 
@@ -70,10 +61,7 @@ for _ in range(num_records):
 
     data.append(record)
 
-# Convert the list of dictionaries into a pandas DataFrame
 df = pd.DataFrame(data)
 
-# Save the DataFrame to a CSV file
 df.to_csv('data/financial_data.csv', index=False)
-
 print(f"CSV file with {num_records} records created successfully!")
