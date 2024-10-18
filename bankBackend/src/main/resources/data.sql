@@ -1,10 +1,25 @@
-CREATE TABLE financial_data (
-                                id bigint AUTO_INCREMENT PRIMARY KEY,
-                                personal_no bigint,
-                                name VARCHAR(100),
-                                income DECIMAL(10, 2),
-                                savings DECIMAL(10, 2),
-                                credit_usage DECIMAL(10, 2),
-                                loan_balance DECIMAL(10, 2),
-                                monthly_spending DECIMAL(10, 2)
+use bank_data;
+
+create table analysis (
+    id bigint primary key auto_increment,
+    predicted_discretionary_income varchar(255),
+    message varchar(255)
 );
+
+create table user (
+    id bigint primary key auto_increment,
+    email varchar(255),
+    password varchar(255),
+    analysis_id bigint,
+    constraint foreign key (analysis_id) references analysis(id)
+);
+
+insert into user (email, password, analysis_id)
+values ("mela@gmail.com", "123", null),
+       ("nika@gmail.com", "123", null),
+       ("oto@gmail.com", "123", null),
+       ("levan@gmail.com", "123", null),
+       ("zuka@gmail.com", "123", null)
+
+DELETE FROM user WHERE analysis_id IS NULL;
+
