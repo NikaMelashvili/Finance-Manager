@@ -11,6 +11,7 @@ create table user (
                       email varchar(255),
                       password varchar(255),
                       analysis_id bigint,
+                      profile_picture longblob,
                       constraint foreign key (analysis_id) references analysis(id)
 );
 
@@ -32,6 +33,14 @@ create table user_data (
                            monthly_discretionary decimal(10, 2),
                            long_term_goals varchar(255)
 );
+
+create table user_finances (
+                               user_id bigint,
+                               data_id bigint
+);
+
+alter table user_finances
+    add constraint primary key (user_id, data_id);
 
 insert into user (email, password, analysis_id)
 values ("mela@gmail.com", "123", null),
