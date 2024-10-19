@@ -31,12 +31,20 @@ public class User extends AppEntity implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @Transient
+    @Lob
+    @Column(name = "profile_image")
+    private byte[] pfp;
+
+    @Column(name = "roles")
+    @Enumerated(EnumType.STRING)
     private Roles roles;
+
+    @OneToMany
+    private List<FinancialData> financialData;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(roles.name()));
+        return List.of();
     }
 
     @Override

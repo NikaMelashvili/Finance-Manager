@@ -26,9 +26,13 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+        if (userRepository.findByEmail(request.getEmail()) != null) {
+            throw new RuntimeException("account by this email already exists");
+        }
         var user = User.builder()
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
+                .pfp(request.getPfp())
                 .roles(Roles.USER)
                 .build();
         userRepository.save(user);
@@ -54,6 +58,4 @@ public class AuthenticationService {
                 .token(token)
                 .build();
     }
-
-
 }

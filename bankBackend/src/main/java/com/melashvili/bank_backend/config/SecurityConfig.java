@@ -18,13 +18,18 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
 
+    private static final String[] WHITE_LIST = {
+            "/rest/authentication/**",
+            "/rest/**"
+    };
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
                     auth
-                            .requestMatchers("/rest/authentication/**").permitAll()
+                            .requestMatchers(WHITE_LIST).permitAll()
                             .anyRequest().authenticated();
                 })
                 .sessionManagement(session -> session

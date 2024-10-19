@@ -1,6 +1,7 @@
 package com.melashvili.bank_backend.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.melashvili.bank_backend.model.base.AppEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Table(name = "user_data")
-public class FinancialData {
+public class FinancialData extends AppEntity {
 
     @Id
     @Column(name = "id")
