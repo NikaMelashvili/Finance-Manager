@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Rethink Sans", sans-serif;
+}
+
+body{
+    background-image: url('../public/assets/macos-monterey-stock-blue-light-layers-5k-6016x6016-5898.jpg');
+    background-size: cover;
+}

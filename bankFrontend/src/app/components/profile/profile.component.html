@@ -1,1 +1,50 @@
-<p>profile works!</p>
+<div *ngIf="user; else noUser" class="info-container">
+  <div class="info">
+    <div class="leftinfo">
+      <div class="balance">
+        <div class="txt">
+          <p>Amount</p>
+          <h1>{{user.balance}}$</h1>
+          <p class="student">STUDENT CARD</p>
+          <p>DEBIT</p>
+        </div>
+        <div class="cards">
+          <img src="assets/cards.png" alt="">
+        </div>
+      </div>
+      <div class="chart">
+        <p>Transaction History</p>
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+    <div class="rightinfo">
+      <div class="profile-info">
+        <p *ngIf="user">{{ user.name }} {{ user.surname }}</p>
+        <button (click)="showAnswer()">Analyze</button>
+
+        <div *ngIf="loading" class="loading-spinner"></div>
+
+        <p *ngIf="displayAnswer">
+          Based on your previous 4 months of Financial Data, your average monthly discretionary amount is 
+          <span class="answer-amount">{{ user.answer }}</span> Lari
+        </p>
+        
+        
+        <!-- Small Calculations Section -->
+        <div class="calculations">
+          <h3>Quick Calculations:</h3>
+          <p>Total Income: {{ user.income }} Lari</p>
+          <p>Total Expenses: 
+            {{ (user.expenses.family + user.expenses.cashout + user.expenses.transfer + user.expenses.health + user.expenses.restaurants + user.expenses.shopping + user.expenses.transport) }} Lari
+          </p>
+          <p>Remaining Balance: {{ user.balance - (user.expenses.family + user.expenses.cashout + user.expenses.transfer + user.expenses.health + user.expenses.restaurants + user.expenses.shopping + user.expenses.transport) }} Lari</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <ng-template #noUser>
+    <h2>No user information available.</h2>
+  </ng-template>
+  
