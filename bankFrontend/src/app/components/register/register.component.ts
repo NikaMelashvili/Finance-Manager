@@ -1,38 +1,32 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent {
-  signupForm: FormGroup;
+export class RegisterComponent implements OnInit{
+  registrationForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) { // Inject AuthService
-    this.signupForm = this.formBuilder.group({
+  constructor(private fb: FormBuilder) {
+    this.registrationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      pfp: ['']
     });
   }
 
-  onSubmit(): void {
-    if (this.signupForm.valid) {
-      const signupData = this.signupForm.value;
-      this.authService.signup(signupData).subscribe(
-        (response) => {
-          console.log('Sign-up successful', response);
-          // Handle success (e.g., navigate to login page or dashboard)
-        },
-        (error) => {
-          console.error('Sign-up failed', error);
-          // Handle error (e.g., show error message)
-        }
-      );
+  ngOnInit() {}
+
+  onSubmit() {
+    if (this.registrationForm.valid) {
+      console.log('Registration Successful', this.registrationForm.value);
+    } else {
+      console.log('Form is invalid');
     }
   }
 }

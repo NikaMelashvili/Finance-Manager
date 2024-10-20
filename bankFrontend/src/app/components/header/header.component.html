@@ -1,0 +1,19 @@
+<header>
+    <div class="subheader">
+      <div class="logo">
+        <img src="assets/TBC.png" alt="TBC Logo">
+        <h1>TBC</h1>
+        <p>INTERNET BANK</p>
+      </div>
+      <div class="profile">
+        <div class="text">
+          <p *ngIf="user">{{ user.name }}</p>
+          <p *ngIf="user"> {{ user.surname }}</p>
+        </div>
+        <div class="pic">
+          <img *ngIf="user?.image" [src]="user?.image" alt="Profile Picture">
+        </div>
+      </div>
+    </div>
+  </header>
+  
