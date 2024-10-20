@@ -1,6 +1,5 @@
 package com.melashvili.bank_backend.model.entities;
 
-import com.melashvili.bank_backend.model.base.AppEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "analysis")
-public class Analysis extends AppEntity {
+public class Analysis {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

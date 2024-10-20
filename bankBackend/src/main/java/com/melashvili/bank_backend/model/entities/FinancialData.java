@@ -1,18 +1,19 @@
 package com.melashvili.bank_backend.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.melashvili.bank_backend.model.base.AppEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @Table(name = "user_data")
-public class FinancialData extends AppEntity {
+public class FinancialData {
 
     @Id
     @Column(name = "id")
@@ -32,8 +33,8 @@ public class FinancialData extends AppEntity {
     @JsonProperty("credit_usage")
     private Double creditUsage;
 
-    @Column(name = "load_balance")
-    @JsonProperty("load_balance")
+    @Column(name = "loan_balance")
+    @JsonProperty("loan_balance")
     private Double loadBalance;
 
     @Column(name = "monthly_spending")
@@ -76,7 +77,10 @@ public class FinancialData extends AppEntity {
     @JsonProperty("monthly_discretionary")
     private Double monthlyDiscretionary;
 
-    @Column(name = "long_term_goal")
-    @JsonProperty("long_term_goal")
+    @Column(name = "long_term_goals")
+    @JsonProperty("long_term_goals")
     private String longTermGoal;
+
+    @OneToMany(mappedBy = "financialData", cascade = CascadeType.ALL)
+    private List<UserFinancialData> userFinancialDataList;
 }

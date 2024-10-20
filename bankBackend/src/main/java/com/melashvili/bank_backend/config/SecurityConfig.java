@@ -19,8 +19,7 @@ public class SecurityConfig {
     private final AuthenticationProvider authenticationProvider;
 
     private static final String[] WHITE_LIST = {
-            "/rest/authentication/**",
-            "/rest/**"
+            "/rest/authentication/**"
     };
 
     @Bean

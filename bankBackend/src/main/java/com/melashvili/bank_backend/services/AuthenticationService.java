@@ -1,6 +1,5 @@
 package com.melashvili.bank_backend.services;
 
-import com.melashvili.bank_backend.model.base.Roles;
 import com.melashvili.bank_backend.model.dto.request.AuthenticationRequest;
 import com.melashvili.bank_backend.model.dto.request.RegisterRequest;
 import com.melashvili.bank_backend.model.dto.response.AuthenticationResponse;
@@ -33,7 +32,6 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .pfp(request.getPfp())
-                .roles(Roles.USER)
                 .build();
         userRepository.save(user);
         var token = jwtService.generateToken(user);

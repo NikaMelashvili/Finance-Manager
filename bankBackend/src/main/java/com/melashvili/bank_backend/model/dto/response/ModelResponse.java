@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AnalysisResponse {
-    private String pdi;
-    private String message;
+public class ModelResponse {
+    private Double predicted_discretionary_income;
 }
+

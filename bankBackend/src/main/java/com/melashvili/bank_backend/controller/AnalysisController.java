@@ -18,7 +18,7 @@ public class AnalysisController {
         this.analysisService = analysisService;
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/get")
     public AnalysisResponse getAnalysisResponse(@RequestParam("accountEmail") String email) {
         return analysisService.dataAnalysis(email);
     }

@@ -1,11 +1,8 @@
 package com.melashvili.bank_backend.model.entities;
 
-import com.melashvili.bank_backend.model.base.AppEntity;
-import com.melashvili.bank_backend.model.base.Roles;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -18,29 +15,28 @@ import java.util.List;
 @Table(name = "user")
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends AppEntity implements UserDetails {
+public class User implements UserDetails {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
     @Column(name = "password")
     private String password;
 
     @Lob
-    @Column(name = "profile_image")
+    @Column(name = "profile_picture")
     private byte[] pfp;
 
-    @Column(name = "roles")
-    @Enumerated(EnumType.STRING)
-    private Roles roles;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserFinancialData> financialDataList;
 
-    @OneToMany
-    private List<FinancialData> financialData;
+    @OneToOne
+    private Analysis analysis;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

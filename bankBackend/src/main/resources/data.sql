@@ -51,3 +51,5 @@ values ("mela@gmail.com", "123", null),
 
 DELETE FROM user WHERE analysis_id IS NULL;
 
+
+
