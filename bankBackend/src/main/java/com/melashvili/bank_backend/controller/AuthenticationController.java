@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.naming.AuthenticationException;
+import javax.security.auth.login.AccountException;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/rest/authentication")
@@ -26,7 +28,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request)
+            throws AccountException, IOException {
         return new ResponseEntity<>(service.register(request), HttpStatus.OK);
     }
 

@@ -11,7 +11,7 @@ describe('LandingPageComponent', () => {
       imports: [LandingPageComponent]
     })
     .compileComponents();
-
+    
     fixture = TestBed.createComponent(LandingPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

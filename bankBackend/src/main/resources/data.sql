@@ -41,15 +41,3 @@ create table user_finances (
 
 alter table user_finances
     add constraint primary key (user_id, data_id);
-
-insert into user (email, password, analysis_id)
-values ("mela@gmail.com", "123", null),
-       ("nika@gmail.com", "123", null),
-       ("oto@gmail.com", "123", null),
-       ("levan@gmail.com", "123", null),
-       ("zuka@gmail.com", "123", null)
-
-DELETE FROM user WHERE analysis_id IS NULL;
-
-
-
