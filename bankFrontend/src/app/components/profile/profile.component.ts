@@ -15,7 +15,7 @@ import { getTokenFromCookie } from '../../utils/cookie';
           <h2 class="mb-4">User Profile</h2>
           <div class="profile-picture-container mb-3">
             <img
-              [src]="'data:image/png;base64,' + user.profilePicture"
+              [src]="'data:image/png;base64,' + user.pfp"
               alt="Profile Picture"
               class="rounded-circle"
             />

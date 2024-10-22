@@ -3,11 +3,16 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: 'signup', component: SignUpComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile/:id', component: ProfileComponent },
+  {
+    path: 'profile/:id',
+    component: ProfileComponent,
+    canActivate: [authGuard],
+  },
   { path: 'landing-page', component: LandingPageComponent },
   { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
   { path: '**', redirectTo: 'landing-page', pathMatch: 'full' },

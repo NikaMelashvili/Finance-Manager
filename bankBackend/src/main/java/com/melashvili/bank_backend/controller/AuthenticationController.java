@@ -5,6 +5,7 @@ import com.melashvili.bank_backend.model.dto.request.RegisterRequest;
 import com.melashvili.bank_backend.model.dto.response.AuthenticationResponse;
 import com.melashvili.bank_backend.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,12 +31,18 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request)
             throws AccountException, IOException {
-        return new ResponseEntity<>(service.register(request), HttpStatus.OK);
+        AuthenticationResponse authResponse = service.register(request);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, authResponse.getCookie())
+                .body(authResponse);
     }
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request)
             throws AuthenticationException {
-        return new ResponseEntity<>(service.authenticate(request), HttpStatus.OK);
+        AuthenticationResponse authResponse = service.authenticate(request);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, authResponse.getCookie())
+                .body(authResponse);
     }
 }

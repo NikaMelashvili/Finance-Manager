@@ -8,4 +8,5 @@ import lombok.Setter;
 public class UserResponseDTO {
     private Long id;
     private String email;
+    private byte[] pfp;
 }

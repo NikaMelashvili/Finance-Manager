@@ -101,7 +101,7 @@ public class AuthenticationService {
                 .httpOnly(false)
                 .secure(false)
                 .path("/")
-                .maxAge(Duration.ofDays(1))
+                .maxAge(Duration.ofDays(48))
                 .sameSite("Strict")
                 .build();
         return cookie.toString();

@@ -19,7 +19,7 @@ public class AnalysisController {
     }
 
     @RequestMapping("/get")
-    public AnalysisResponse getAnalysisResponse(@RequestParam("accountEmail") String email) {
+    public AnalysisResponse getAnalysisResponse(@RequestParam("email") String email) {
         return analysisService.dataAnalysis(email);
     }
 }
