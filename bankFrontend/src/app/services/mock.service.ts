@@ -12,7 +12,8 @@ export class MockService {
       id: 1,
       email: 'user1@test.com',
       password: 'password1',
-      image: 'https://images.pexels.com/photos/28824456/pexels-photo-28824456/free-photo-of-woman-in-white-shirt-looking-out-from-glass-door.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      image:
+        'https://images.pexels.com/photos/28824456/pexels-photo-28824456/free-photo-of-woman-in-white-shirt-looking-out-from-glass-door.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
       name: 'Giorgi',
       surname: 'giorgadze',
       balance: 3000,
@@ -26,13 +27,14 @@ export class MockService {
         shopping: 100,
         transport: 80,
       },
-      answer:404.0,
+      answer: 404.0,
     },
     {
       id: 2,
       email: 'user2@test.com',
       password: 'password2',
-      image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=600',
+      image:
+        'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=600',
       name: 'Ana',
       surname: 'giorgadze',
       balance: 1500,
@@ -46,13 +48,14 @@ export class MockService {
         shopping: 150,
         transport: 90,
       },
-      answer:404.0,
+      answer: 404.0,
     },
     {
       id: 3,
       email: 'user3@test.com',
       password: 'password3',
-      image: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=600',
+      image:
+        'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=600',
       name: 'Mikheil',
       surname: 'giorgadze',
       balance: 6425,
@@ -66,13 +69,14 @@ export class MockService {
         shopping: 70,
         transport: 50,
       },
-      answer:404.0,
+      answer: 404.0,
     },
     {
       id: 4,
       email: 'user4@test.com',
       password: 'password4',
-      image: 'https://images.pexels.com/photos/943084/pexels-photo-943084.jpeg?auto=compress&cs=tinysrgb&w=600',
+      image:
+        'https://images.pexels.com/photos/943084/pexels-photo-943084.jpeg?auto=compress&cs=tinysrgb&w=600',
       name: 'Nino',
       surname: 'giorgadze',
       balance: 1364,
@@ -86,7 +90,7 @@ export class MockService {
         shopping: 140,
         transport: 75,
       },
-      answer:404.0,
+      answer: 404.0,
     },
   ];
 
@@ -98,7 +102,9 @@ export class MockService {
   }
 
   validateUser(email: string, password: string): Dto | null {
-    const user = this.testUsers.find(u => u.email === email && u.password === password);
+    const user = this.testUsers.find(
+      (u) => u.email === email && u.password === password
+    );
     if (user) {
       this.currentUserSubject.next(user); // Update currentUserSubject
     }
@@ -106,7 +112,7 @@ export class MockService {
   }
 
   getTestId(id: number): Dto | undefined {
-    return this.testUsers.find(user => user.id === id);
+    return this.testUsers.find((user) => user.id === id);
   }
 
   getCurrentUser(): Dto | null {
@@ -114,6 +120,6 @@ export class MockService {
   }
 
   setCurrentUser(user: Dto): void {
-    this.currentUserSubject.next(user); 
+    this.currentUserSubject.next(user);
   }
 }
