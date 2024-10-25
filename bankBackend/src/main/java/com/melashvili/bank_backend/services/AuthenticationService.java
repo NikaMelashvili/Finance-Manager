@@ -23,7 +23,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.time.Duration;
-import java.util.Base64;
 
 @Service
 @RequiredArgsConstructor

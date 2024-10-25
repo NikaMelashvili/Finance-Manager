@@ -5,16 +5,15 @@ import com.melashvili.bank_backend.model.dto.request.RegisterRequest;
 import com.melashvili.bank_backend.model.dto.response.AuthenticationResponse;
 import com.melashvili.bank_backend.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.naming.AuthenticationException;
 import javax.security.auth.login.AccountException;
 import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 
 @RestController
 @RequestMapping("/rest/authentication")
@@ -28,14 +27,20 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
+    @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request)
-            throws AccountException, IOException {
-        return new ResponseEntity<>(service.register(request), HttpStatus.OK);
+            throws IOException, AccountException {
+        AuthenticationResponse authResponse = service.register(request);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, authResponse.getCookie().toString())
+                .body(authResponse);
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request)
-            throws AuthenticationException {
-        return new ResponseEntity<>(service.authenticate(request), HttpStatus.OK);
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
+        AuthenticationResponse authResponse = service.authenticate(request);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, authResponse.getCookie().toString())
+                .body(authResponse);
     }
 }

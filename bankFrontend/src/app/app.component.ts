@@ -38,7 +38,7 @@ import { RouterOutlet, RouterLink } from '@angular/router';
                 <button
                   class="btn btn-outline-success me-2 ms-lg-auto"
                   type="button"
-                  [routerLink]="['/profile', userId]"
+                  [routerLink]="['/profile']"
                 >
                   Profile
                 </button>

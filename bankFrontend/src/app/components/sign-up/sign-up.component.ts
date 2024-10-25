@@ -41,7 +41,7 @@ import { AuthService } from '../../services/auth.service';
             class="form-control"
             type="file"
             id="formFile"
-            formControlName="profilePicture"
+            formControlName="pfp"
           />
         </div>
         <div class="mb-3">
@@ -80,7 +80,7 @@ export class SignUpComponent implements OnInit {
         Validators.required,
         Validators.minLength(3),
       ]),
-      profilePicture: new FormControl('', [Validators.required]),
+      pfp: new FormControl('', [Validators.required]),
     });
   }
 
