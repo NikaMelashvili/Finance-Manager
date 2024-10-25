@@ -35,7 +35,7 @@ public class AnalysisService {
 
     private int numberOfFinancialData;
 
-    private static final Double PERCENT = 7.5;
+    private static final Double PERCENT = 8.0;
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
