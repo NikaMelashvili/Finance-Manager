@@ -143,5 +143,4 @@ public class AnalysisService {
         return response != null ? response.getPredicted_discretionary_income() : 0.0;
     }
 
-
 }
