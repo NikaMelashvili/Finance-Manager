@@ -1,2 +1,2 @@
-# TBC Hackathon
+# Finance Manager with AI
 
