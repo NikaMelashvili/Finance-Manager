@@ -44,6 +44,7 @@ export class AuthService {
     }
 
     const headers = this.attachTokenToHeaders(token);
+    console.log('Headers:', headers);
 
     return this.http
       .get<UserResponseDTO>(`${this.baseUrlProfile}/byEmail?email=${this.currentUserEmail}`, {
@@ -59,8 +60,6 @@ export class AuthService {
   }
 
   attachTokenToHeaders(token: string): HttpHeaders {
-    let headers = new HttpHeaders();
-    headers = headers.set('Authorization', `Bearer ${token}`);
-    return headers;
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 }

@@ -32,7 +32,6 @@ public class ProfileController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/byEmail")
     public ResponseEntity<UserResponseDTO> getProfileByEmail(
             @RequestParam String email,
