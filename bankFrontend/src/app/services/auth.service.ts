@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SignUp } from '../common/sign-up';
-import { Observable, tap } from 'rxjs';
+import {catchError, Observable, tap, throwError} from 'rxjs';
 import { Login } from '../common/login';
 import { UserResponseDTO } from '../common/user-response-dto';
 import { getTokenFromCookie } from '../utils/cookie';
@@ -44,19 +44,22 @@ export class AuthService {
     }
 
     const headers = this.attachTokenToHeaders(token);
+    console.log('Headers:', headers);
 
-    return this.http.get<UserResponseDTO>(
-      `${this.baseUrlProfile}/byEmail?email=${this.currentUserEmail}`,
-      {
+    return this.http
+      .get<UserResponseDTO>(`${this.baseUrlProfile}/byEmail?email=${this.currentUserEmail}`, {
         headers,
         withCredentials: true,
-      }
-    );
+      })
+      .pipe(
+        catchError((err) => {
+          console.error('Error fetching user profile:', err);
+          return throwError(() => new Error('Failed to load user profile'));
+        })
+      );
   }
 
   attachTokenToHeaders(token: string): HttpHeaders {
-    let headers = new HttpHeaders();
-    headers = headers.set('Authorization', `Bearer ${token}`);
-    return headers;
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 }

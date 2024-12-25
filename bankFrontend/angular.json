@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "sourceMap": true,
             "outputPath": "dist/tbcn",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -91,6 +92,7 @@
                 "input": "public"
               }
             ],
+            "sourceMap": true,
             "styles": ["src/styles.css"],
             "scripts": []
           }

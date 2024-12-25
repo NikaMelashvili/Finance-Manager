@@ -52,15 +52,18 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  loadUserProfile(email: string) {
-    this.authService.loadUserProfile(email).subscribe(
-      (response) => {
+  loadUserProfile(email: string): void {
+    this.authService.loadUserProfile(email).subscribe({
+      next: (response) => {
         this.user = response;
-        console.log('response: ' + response);
+        console.log('Response:', response);
       },
-      (error) => {
-        console.error("Couldn't load user profile. " + error);
-      }
-    );
+      error: (error) => {
+        console.error("Couldn't load user profile:", error);
+      },
+      complete: () => {
+        console.log('User profile loading complete.');
+      },
+    });
   }
 }
