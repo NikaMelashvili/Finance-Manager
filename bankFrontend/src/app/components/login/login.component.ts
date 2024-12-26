@@ -37,8 +37,8 @@ import { AuthService } from '../../services/auth.service';
             placeholder="Password"
           />
         </div>
-        <div class="mb-3">
-          <button type="submit" class="btn btn-primary mb-3">Submit</button>
+        <div class="mb-3 btn-auth-container">
+          <button type="submit" class="btn btn-primary btn-auth mb-3">Login</button>
         </div>
       </form>
     </div>
@@ -47,6 +47,19 @@ import { AuthService } from '../../services/auth.service';
     `
       .container-login {
         padding-top: 20px;
+        width: 100%;
+      }
+      .form-control {
+        width: 400px;
+      }
+      @media (max-width: 768px) {
+        .form-control {
+          margin: auto;
+          max-width: 85%;
+        }
+        .form-label {
+          margin-left: 10%;
+        }
       }
     `,
   ],

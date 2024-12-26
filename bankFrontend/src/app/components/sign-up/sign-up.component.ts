@@ -1,4 +1,4 @@
-import { SignUp } from './../../common/sign-up';
+import { SignUp } from '../../common/sign-up';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -44,8 +44,8 @@ import { AuthService } from '../../services/auth.service';
             formControlName="pfp"
           />
         </div>
-        <div class="mb-3">
-          <button type="submit" class="btn btn-primary mb-3">Submit</button>
+        <div class="mb-3 btn-auth-container">
+          <button type="submit" class="btn btn-primary btn-auth mb-3">Register</button>
         </div>
       </form>
     </div>
@@ -54,6 +54,19 @@ import { AuthService } from '../../services/auth.service';
     `
       .container-sign-up {
         padding-top: 20px;
+        width: 100%;
+      }
+      .form-control {
+        width: 400px;
+      }
+      @media (max-width: 768px) {
+        .form-control {
+          margin: auto;
+          max-width: 85%;
+        }
+        .form-label {
+          margin-left: 10%;
+        }
       }
     `,
   ],

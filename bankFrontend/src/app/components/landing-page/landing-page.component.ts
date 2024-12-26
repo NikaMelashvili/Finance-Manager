@@ -1,18 +1,14 @@
-import { Component } from '@angular/core';
-import { LoginComponent } from '../login/login.component';
-import { SignUpComponent } from '../sign-up/sign-up.component';
-import { RouterOutlet, RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import {Component} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
   imports: [
-    LoginComponent,
-    SignUpComponent,
     CommonModule,
     RouterOutlet,
-    RouterLink,
+
   ],
   template: `
     <div class="container">
@@ -21,8 +17,12 @@ import { CommonModule } from '@angular/common';
   `,
   styles: [
     `
-      .cursor-pointer {
-        cursor: pointer;
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
       }
     `,
   ],

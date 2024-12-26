@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { LandingPageComponent } from './components/landing-page/landing-page.component';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import {Component} from '@angular/core';
+import {LandingPageComponent} from './components/landing-page/landing-page.component';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, LandingPageComponent],
+  imports: [RouterLink, LandingPageComponent],
   template: `
     <div class="container-fluid p-0">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">

@@ -16,9 +16,7 @@ export class AuthService {
   private signUpUrl = this.baseUrlAuth + '/register';
   private loginUrl = this.baseUrlAuth + '/authenticate';
 
-  public currentUserEmail: string = '';
-
-  userProfile: UserResponseDTO = new UserResponseDTO();
+  public currentUserEmail: string = 'mela1@mail.ge';
 
   constructor(private http: HttpClient) {}
 

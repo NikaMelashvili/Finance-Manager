@@ -1,54 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { UserResponseDTO } from '../../common/user-response-dto';
-import { CommonModule } from '@angular/common';
-import { getTokenFromCookie } from '../../utils/cookie';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../services/auth.service';
+import {UserResponseDTO} from '../../common/user-response-dto';
+import {CommonModule} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div *ngIf="user" class="container mt-4">
-      <div class="row justify-content-center">
-        <div class="col-md-8 text-center">
-          <h2 class="mb-4">User Profile</h2>
-          <div class="profile-picture-container mb-3">
-            <img
-              [src]="'data:image/png;base64,' + user.pfp"
-              alt="Profile Picture"
-              class="rounded-circle"
-            />
-          </div>
-          <h4>{{ user.email }}</h4>
-        </div>
+    <div *ngIf="user" class="profile-container mt-4">
+      <div class="profile-picture-container">
+        <img
+          [src]="'data:image/png;base64,' + user.pfp"
+          alt="Profile Picture"
+          class="rounded-circle"
+        />
+      </div>
+      <div class="profile-details">
+        <h4>{{ user.email }}</h4>
+        <button class="btn btn-primary mt-3" (click)="navigateToFinancialData()">Financial Data</button>
       </div>
     </div>
   `,
   styles: [
     `
+      .profile-container {
+        display: flex;
+        align-items: flex-start;
+      }
+      .profile-picture-container {
+        margin-right: 20px;
+      }
       .profile-picture-container img {
         width: 140px;
         height: 140px;
         object-fit: cover;
         border: 2px solid #007bff;
         padding: 4px;
-        background-color: white;
       }
     `,
   ],
 })
 export class ProfileComponent implements OnInit {
   user!: UserResponseDTO;
+  email: string = 'mela1@mail.ge';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    const email = this.authService.currentUserEmail;
+    this.email = this.authService.currentUserEmail;
     if (this.authService.currentUserEmail) {
-      this.loadUserProfile(email);
+      this.loadUserProfile(this.email);
     } else {
       console.error('User email is not set.');
+      this.router.navigate(['/login']);
     }
   }
 
@@ -65,5 +71,9 @@ export class ProfileComponent implements OnInit {
         console.log('User profile loading complete.');
       },
     });
+  }
+
+  navigateToFinancialData(): void {
+    this.router.navigate(['/financial-data']);
   }
 }
