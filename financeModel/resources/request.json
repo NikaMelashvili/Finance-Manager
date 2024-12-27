@@ -1,0 +1,17 @@
+{
+    "income": 5000.00,
+    "savings": 2500.00,
+    "credit_usage": 560.00,
+    "loan_balance": 400.00,
+    "monthly_spending": 1700.00,
+    "investment_portfolio": 680.0,
+    "risk_appetite": "Medium",
+    "age": 21,
+    "employment_status": "Employed",
+    "education_level": "Bachelor",
+    "credit_score": 800,
+    "debt_to_income_ratio": 20.00,
+    "monthly_essentials": 1500.00,
+    "monthly_discretionary": 150.00,
+    "long_term_goals": "Real estate investment"
+}

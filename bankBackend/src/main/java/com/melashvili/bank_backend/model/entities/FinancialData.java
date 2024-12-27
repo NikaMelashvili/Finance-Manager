@@ -81,6 +81,7 @@ public class FinancialData {
     @JsonProperty("long_term_goals")
     private String longTermGoal;
 
-    @OneToMany(mappedBy = "financialData", cascade = CascadeType.ALL)
-    private List<UserFinancialData> userFinancialDataList;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
 }

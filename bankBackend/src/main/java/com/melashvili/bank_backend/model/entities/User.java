@@ -33,7 +33,7 @@ public class User implements UserDetails {
     private byte[] pfp;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserFinancialData> financialDataList;
+    private List<FinancialData> financialDataList;
 
     @OneToOne
     private Analysis analysis;

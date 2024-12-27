@@ -31,16 +31,10 @@ create table user_data (
                            debt_to_income_ratio decimal(5, 2),
                            monthly_essentials decimal(10, 2),
                            monthly_discretionary decimal(10, 2),
-                           long_term_goals varchar(255)
+                           long_term_goals varchar(255),
+                            user_id bigint,
+    constraint foreign key (user_id) references user(id)
 );
-
-create table user_finances (
-                               user_id bigint,
-                               data_id bigint
-);
-
-alter table user_finances
-    add constraint primary key (user_id, data_id);
 
 INSERT INTO user_data
     (income, savings, credit_usage, loan_balance, monthly_spending, investment_portfolio, risk_appetite, age, employment_status, education_level, credit_score, debt_to_income_ratio, monthly_essentials, monthly_discretionary, long_term_goals)
@@ -53,6 +47,3 @@ VALUE                                                                           
                                                                                                                                                                                                                                                                         (32000.00, 2000.00, 1000.00, 5000.00, 1500.00, 1000.00, 'Low', 22, 'Part-time', 'High School', 620, 45.80, 1100.00, 400.00, 'Further education'),
                                                                                                                                                                                                                                                                         (78000.00, 25000.00, 3000.00, 15000.00, 3200.00, 20000.00, 'Medium', 36, 'Employed', 'Bachelor', 710, 29.10, 1600.00, 1600.00, 'Stock investments'),
                                                                                                                                                                                                                                                                         (55000.00, 8000.00, 2500.00, 10000.00, 2300.00, 7000.00, 'Medium', 27, 'Employed', 'Bachelor', 725, 32.50, 1400.00, 900.00, 'Buy a car');
-
-insert into user_finances
-values (1, 4);
