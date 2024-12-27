@@ -1,6 +1,7 @@
 package com.melashvili.bank_backend.model.mapper;
 
 import com.melashvili.bank_backend.model.dto.request.AnalysisRequest;
+import com.melashvili.bank_backend.model.dto.response.FinanceDataResponse;
 import com.melashvili.bank_backend.model.entities.FinancialData;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,5 +31,22 @@ public class FinanceMapper {
         analysisRequest.setLongTermGoal(financialData.getLongTermGoal());
 
         return analysisRequest;
+    }
+
+    public static FinanceDataResponse mapToResponse(FinancialData financialData) {
+        FinanceDataResponse financeDataResponse = new FinanceDataResponse();
+
+        financeDataResponse.setIncome(financialData.getIncome());
+        financeDataResponse.setSavings(financialData.getSavings());
+        financeDataResponse.setCreditUsage(financialData.getCreditUsage());
+        financeDataResponse.setLoadBalance(financialData.getLoadBalance());
+        financeDataResponse.setMonthlySpending(financialData.getMonthlySpending());
+        financeDataResponse.setInvestmentPortfolio(financialData.getInvestmentPortfolio());
+        financeDataResponse.setCreditScore(financialData.getCreditScore());
+        financeDataResponse.setDebtToIncomeRatio(financialData.getDebtToIncomeRatio());
+        financeDataResponse.setMonthlyEssentials(financialData.getMonthlyEssentials());
+        financeDataResponse.setMonthlyDiscretionary(financialData.getMonthlyDiscretionary());
+
+        return financeDataResponse;
     }
 }

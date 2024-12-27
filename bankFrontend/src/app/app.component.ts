@@ -10,7 +10,7 @@ import {RouterLink} from '@angular/router';
     <div class="container-fluid p-0">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">UserBase</a>
+          <a class="navbar-brand" href="#">Finance Manager</a>
           <button
             class="navbar-toggler"
             type="button"
