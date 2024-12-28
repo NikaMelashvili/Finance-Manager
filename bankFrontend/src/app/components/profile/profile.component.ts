@@ -3,6 +3,7 @@ import {AuthService} from '../../services/auth.service';
 import {UserResponseDTO} from '../../common/user-response-dto';
 import {CommonModule} from '@angular/common';
 import {Router} from '@angular/router';
+import {ProfileService} from '../../services/profile.service'
 
 @Component({
   selector: 'app-profile',
@@ -44,9 +45,9 @@ import {Router} from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   user!: UserResponseDTO;
-  email: string = 'mela1@mail.ge';
+  email: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private profileService: ProfileService, private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.email = this.authService.currentUserEmail;
@@ -59,7 +60,7 @@ export class ProfileComponent implements OnInit {
   }
 
   loadUserProfile(email: string): void {
-    this.authService.loadUserProfile(email).subscribe({
+    this.profileService.loadUserProfile(email).subscribe({
       next: (response) => {
         this.user = response;
         console.log('Response:', response);

@@ -1,3 +1,5 @@
+import {HttpHeaders} from "@angular/common/http";
+
 export function getTokenFromCookie(): string | null {
   const cookieName = 'authToken=';
   const decodedCookie = decodeURIComponent(document.cookie);
@@ -11,4 +13,8 @@ export function getTokenFromCookie(): string | null {
   }
 
   return null;
+}
+
+export function attachTokenToHeaders(token: string): HttpHeaders {
+  return new HttpHeaders().set('Authorization', `Bearer ${token}`);
 }
