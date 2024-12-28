@@ -4,11 +4,12 @@ import {UserResponseDTO} from '../../common/user-response-dto';
 import {CommonModule} from '@angular/common';
 import {Router} from '@angular/router';
 import {ProfileService} from '../../services/profile.service'
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   template: `
     <div *ngIf="user" class="profile-container mt-4">
       <div class="profile-picture-container">
@@ -20,7 +21,7 @@ import {ProfileService} from '../../services/profile.service'
       </div>
       <div class="profile-details">
         <h4>{{ user.email }}</h4>
-        <button class="btn btn-primary mt-3" (click)="navigateToFinancialData()">Financial Data</button>
+        <button class="btn btn-primary mt-3" [routerLink]="['/user-data']">Financial Data</button>
       </div>
     </div>
   `,
@@ -68,13 +69,6 @@ export class ProfileComponent implements OnInit {
       error: (error) => {
         console.error("Couldn't load user profile:", error);
       },
-      complete: () => {
-        console.log('User profile loading complete.');
-      },
     });
-  }
-
-  navigateToFinancialData(): void {
-    this.router.navigate(['/financial-data']);
   }
 }

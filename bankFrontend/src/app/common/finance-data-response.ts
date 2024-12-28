@@ -14,7 +14,7 @@ export class FinanceDataResponse {
 
   creditScore!: number;
 
-  deptToIncomeRatio!: number;
+  debtToIncomeRatio!: number;
 
   monthlyEssentials!: number;
 
