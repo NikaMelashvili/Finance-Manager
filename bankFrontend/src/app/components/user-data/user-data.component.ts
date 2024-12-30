@@ -3,11 +3,12 @@ import { FinanceDataResponse } from "../../common/finance-data-response";
 import { ProfileService } from "../../services/profile.service";
 import { AuthService } from "../../services/auth.service";
 import { CommonModule } from '@angular/common';
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-user-data',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   template: `
     <h2>Finance Data</h2>
     <table class="finance-table">
@@ -40,6 +41,7 @@ import { CommonModule } from '@angular/common';
       </tr>
       </tbody>
     </table>
+    <button class="btn btn-primary" [routerLink]="['/profile']">Back to Profile</button>
   `,
   styles: [
     `.finance-table {

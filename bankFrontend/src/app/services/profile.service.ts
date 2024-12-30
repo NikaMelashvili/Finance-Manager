@@ -6,6 +6,7 @@ import {getTokenFromCookie} from "../utils/cookie";
 import {attachTokenToHeaders} from "../utils/cookie";
 import {HttpClient} from "@angular/common/http";
 import {FinanceDataResponse} from "../common/finance-data-response";
+import {AnalysisResponse} from "../common/analysis-response";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,8 @@ export class ProfileService {
   private baseUrlProfile: string = this.baseApiUrl + '/profile';
 
   private baseUrlProfileData: string = this.baseApiUrl + '/finance';
+
+  private baseUrlAnalysis: string = this.baseApiUrl + '/analysis';
 
   constructor(private http: HttpClient) { }
 
@@ -63,5 +66,27 @@ export class ProfileService {
           return throwError(() => new Error('Failed to load financial data.'));
         })
       );
+  }
+
+  getAnalysis(email: string): Observable<AnalysisResponse> {
+    const token: string = getTokenFromCookie() ?? '';
+    if (!token) {
+      console.error('No token found in cookies');
+      throw new Error('No token found in cookies');
+    }
+
+    const headers = attachTokenToHeaders(token);
+
+    return this.http
+      .get<AnalysisResponse>(`${this.baseUrlAnalysis}/get?accountEmail=${email}`, {
+        headers,
+        withCredentials: true,
+      })
+      .pipe(
+        catchError((err) => {
+          console.error("Error fetching user financial data:", err);
+          return throwError(() => new Error('Failed to load financial data.'));
+        })
+      )
   }
 }

@@ -34,8 +34,6 @@ public class AnalysisService {
 
     private int numberOfFinancialData;
 
-    private static final Double PERCENT = 8.0;
-
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -92,7 +90,10 @@ public class AnalysisService {
     private Double callModel(List<AnalysisRequest> analysisRequests) {
 
         List<Double> analysisResponses = new ArrayList<>();
+
         double averageValue;
+
+        this.numberOfFinancialData = 0;
 
         if (analysisRequests.size() > 1) {
             for (AnalysisRequest analysisRequest : analysisRequests) {

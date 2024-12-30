@@ -1,10 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { SignUp } from '../common/sign-up';
-import {catchError, Observable, tap, throwError} from 'rxjs';
-import { Login } from '../common/login';
-import { UserResponseDTO } from '../common/user-response-dto';
-import { getTokenFromCookie } from '../utils/cookie';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {SignUp} from '../common/sign-up';
+import {Observable} from 'rxjs';
+import {Login} from '../common/login';
 import {environment} from "../../environments/environment";
 
 @Injectable({
