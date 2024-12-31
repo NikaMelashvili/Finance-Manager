@@ -1,5 +1,6 @@
 package com.melashvili.bank_backend.services;
 
+import com.melashvili.bank_backend.model.dto.request.FinancialDataRequest;
 import com.melashvili.bank_backend.model.dto.response.FinanceDataResponse;
 import com.melashvili.bank_backend.model.entities.FinancialData;
 import com.melashvili.bank_backend.model.entities.User;
@@ -35,4 +36,15 @@ public class FinanceService {
         }
         return null;
     }
+
+//    public void addFinancialRecord(FinancialDataRequest financialDataRequest) {
+//        FinancialData financialData = new FinancialData();
+//
+//        if (financialDataRequest != null) {
+//            financialData.setIncome(financialDataRequest.getIncome());
+//            financialData.setAge(financialDataRequest.getAge());
+//            financialData.setCreditScore(financialDataRequest.getCreditScore());
+//            financialData.set
+//        }
+//    }
 }

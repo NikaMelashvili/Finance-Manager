@@ -1,11 +1,10 @@
 package com.melashvili.bank_backend.controller;
 
+import com.melashvili.bank_backend.model.dto.request.FinancialDataRequest;
 import com.melashvili.bank_backend.model.dto.response.FinanceDataResponse;
 import com.melashvili.bank_backend.services.FinanceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,4 +23,9 @@ public class FinanceController {
     public List<FinanceDataResponse> getFinanceData(@RequestParam("accountEmail") String email){
         return financeService.getFinanceData(email);
     }
+
+//    @PostMapping("/add")
+//    public void addFinancialRecord(@RequestBody FinancialDataRequest financialDataRequest) {
+//        financeService.addFinancialRecord(financialDataRequest);
+//    }
 }
