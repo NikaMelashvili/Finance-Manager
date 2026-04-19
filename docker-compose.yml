@@ -1,0 +1,57 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8
+    restart: always
+    env_file:
+      - ./env/mysql.env
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./bankBackend/src/main/resources/data.sql:/docker-entrypoint-initdb.d/data.sql
+    networks:
+      - app-network
+    healthcheck:
+      test: ['CMD-SHELL', 'mysqladmin ping -h localhost -uroot -p123']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  bank-backend:
+    build: ./bankBackend
+    container_name: bank-backend
+    env_file:
+      - ./env/backend.env
+    ports:
+      - '8080:8080'
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  finance-model:
+    build: ./financeModel
+    container_name: finance-model
+    ports:
+      - '5001:5000'
+    depends_on:
+      - bank-backend
+
+  bank-frontend:
+    build: ./bankFrontend
+    container_name: bank-frontend
+    ports:
+      - '3000:80'
+    depends_on:
+      - bank-backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:

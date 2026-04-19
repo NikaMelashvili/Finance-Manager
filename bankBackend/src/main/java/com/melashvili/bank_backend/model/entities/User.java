@@ -29,7 +29,7 @@ public class User implements UserDetails {
     private String password;
 
     @Lob
-    @Column(name = "profile_picture")
+    @Column(name = "profile_picture", columnDefinition = "LONGBLOB")
     private byte[] pfp;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

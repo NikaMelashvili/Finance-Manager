@@ -6,11 +6,9 @@ import com.melashvili.bank_backend.model.dto.response.AuthenticationResponse;
 import com.melashvili.bank_backend.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.naming.AuthenticationException;
 import javax.security.auth.login.AccountException;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
